@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Reservation — BookStay{% endblock %}
+{% block page_title %}{{ action }} Reservation{% endblock %}
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'bookings:list' %}" style="color:var(--gold);text-decoration:none;">Reservations</a></li>
+<li class="breadcrumb-item active">{{ action }}</li>
+{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <!-- Room Selection -->
+    <div class="col-lg-8">
+        <div class="luxury-card mb-4">
+            <div class="card-header-luxury">
+                <h5>🏨 Select Your Room</h5>
+            </div>
+            <div style="padding:24px;">
+                <div class="row g-3" id="roomCards">
+                    {% for room in rooms %}
+                    <div class="col-md-6">
+                        <div class="room-card" onclick="selectRoom({{ room.id }}, '{{ room.get_name_display }}', {{ room.price_per_night }})"
+                             id="room-{{ room.id }}"
+                             style="border:2px solid #EEEBE3;border-radius:14px;padding:20px;cursor:pointer;transition:all 0.2s;background:white;">
+                            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
+                                <div>
+                                    <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1A1A2E;">{{ room.get_name_display }}</div>
+                                    <div style="font-size:12px;color:#6B6B6B;margin-top:2px;">Up to {{ room.capacity }} guests</div>
+                                </div>
+                                <div style="text-align:right;">
+                                    <div style="font-size:18px;font-weight:700;color:#C9A84C;">RM {{ room.price_per_night }}</div>
+                                    <div style="font-size:11px;color:#6B6B6B;">per night</div>
+                                </div>
+                            </div>
+                            <div style="font-size:13px;color:#6B6B6B;margin-bottom:12px;">{{ room.description }}</div>
+                            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                                <span style="font-size:11px;background:#FAF8F3;border:1px solid #EEEBE3;padding:3px 10px;border-radius:20px;">🛏️ Luxury Bed</span>
+                                <span style="font-size:11px;background:#FAF8F3;border:1px solid #EEEBE3;padding:3px 10px;border-radius:20px;">📶 Free WiFi</span>
+                                <span style="font-size:11px;background:#FAF8F3;border:1px solid #EEEBE3;padding:3px 10px;border-radius:20px;">🍳 Breakfast</span>
+                            </div>
+                            <div style="margin-top:14px;padding:8px 14px;border-radius:8px;text-align:center;font-size:13px;font-weight:600;background:#F9F7F2;color:#6B6B6B;" class="select-btn">
+                                Select Room
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="luxury-card">
+            <div class="card-header-luxury">
+                <h5>📋 Reservation Details</h5>
+            </div>
+            <div style="padding:28px;">
+                <form method="POST" id="bookingForm">
+                    {% csrf_token %}
+                    <!-- Hidden room type field -->
+                    <input type="hidden" name="room_type" id="selectedRoomId" value="{{ form.room_type.value|default:'' }}">
+                    {% for error in form.room_type.errors %}
+                    <div style="font-size:12px;color:#EF4444;margin-bottom:12px;">Please select a room above.</div>
+                    {% endfor %}
+
+                    <div style="margin-bottom:20px;">
+                        <label class="form-label-luxury">Booking Name / Reference</label>
+                        <input type="text" name="title"
+                               class="form-control-luxury"
+                               value="{{ form.title.value|default:'' }}"
+                               placeholder="e.g. Family Holiday, Anniversary Trip"
+                               required>
+                        {% for error in form.title.errors %}
+                        <div style="font-size:12px;color:#EF4444;margin-top:4px;">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="row g-3" style="margin-bottom:20px;">
+                        <div class="col-md-6">
+                            <label class="form-label-luxury">Check-in Date</label>
+                            <input type="date" name="check_in_date"
+                                   class="form-control-luxury"
+                                   value="{{ form.check_in_date.value|default:'' }}"
+                                   id="checkIn" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-luxury">Check-out Date</label>
+                            <input type="date" name="check_out_date"
+                                   class="form-control-luxury"
+                                   value="{{ form.check_out_date.value|default:'' }}"
+                                   id="checkOut" required>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:20px;">
+                        <label class="form-label-luxury">Number of Guests</label>
+                        <input type="number" name="guests"
+                               class="form-control-luxury"
+                               value="{{ form.guests.value|default:'1' }}"
+                               min="1" max="10" required>
+                    </div>
+
+                    <div style="margin-bottom:20px;">
+                        <label class="form-label-luxury">Special Requests (Optional)</label>
+                        <textarea name="special_requests"
+                                  class="form-control-luxury"
+                                  rows="3"
+                                  placeholder="e.g. Early check-in, extra pillows, anniversary decoration...">{{ form.special_requests.value|default:'' }}</textarea>
+                    </div>
+
+                    {% if user.is_admin %}
+                    <div style="margin-bottom:20px;">
+                        <label class="form-label-luxury">Status</label>
+                        <select name="status" class="form-control-luxury">
+                            {% for val, label in form.fields.status.choices %}
+                            <option value="{{ val }}" {% if form.status.value == val %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% else %}
+                    <input type="hidden" name="status" value="pending">
+                    {% endif %}
+
+                    <div style="display:flex;gap:12px;margin-top:8px;">
+                        <button type="submit" class="btn-gold btn">
+                            <i class="bi bi-check-lg me-2"></i>{{ action }} Reservation
+                        </button>
+                        <a href="{% url 'bookings:list' %}" class="btn-outline-gold btn">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Card -->
+    <div class="col-lg-4">
+        <div class="luxury-card" style="position:sticky;top:20px;">
+            <div class="card-header-luxury">
+                <h5>💰 Booking Summary</h5>
+            </div>
+            <div style="padding:24px;">
+                <div id="summaryRoom" style="margin-bottom:16px;padding:16px;background:#FAF8F3;border-radius:10px;border:1px solid #EEEBE3;">
+                    <div style="font-size:12px;color:#6B6B6B;margin-bottom:4px;">Selected Room</div>
+                    <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1A1A2E;" id="summaryRoomName">No room selected</div>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F5F3EE;">
+                    <span style="font-size:13px;color:#6B6B6B;">Price per night</span>
+                    <span style="font-size:13px;font-weight:600;" id="summaryPrice">—</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F5F3EE;">
+                    <span style="font-size:13px;color:#6B6B6B;">Number of nights</span>
+                    <span style="font-size:13px;font-weight:600;" id="summaryNights">—</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:14px 0;margin-top:4px;">
+                    <span style="font-size:15px;font-weight:700;color:#1A1A2E;">Total</span>
+                    <span style="font-size:18px;font-weight:700;color:#C9A84C;" id="summaryTotal">RM 0.00</span>
+                </div>
+                <div style="margin-top:12px;padding:12px;background:#D1FAE5;border-radius:8px;font-size:12px;color:#065F46;">
+                    ✅ Free cancellation up to 24 hours before check-in
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let selectedPrice = 0;
+
+function selectRoom(id, name, price) {
+    // Remove selection from all cards
+    document.querySelectorAll('.room-card').forEach(card => {
+        card.style.border = '2px solid #EEEBE3';
+        card.style.background = 'white';
+        card.querySelector('.select-btn').style.background = '#F9F7F2';
+        card.querySelector('.select-btn').style.color = '#6B6B6B';
+        card.querySelector('.select-btn').textContent = 'Select Room';
+    });
+
+    // Highlight selected card
+    const selected = document.getElementById('room-' + id);
+    selected.style.border = '2px solid #C9A84C';
+    selected.style.background = '#FFFEF7';
+    selected.querySelector('.select-btn').style.background = '#C9A84C';
+    selected.querySelector('.select-btn').style.color = 'white';
+    selected.querySelector('.select-btn').textContent = '✓ Selected';
+
+    // Update hidden input
+    document.getElementById('selectedRoomId').value = id;
+
+    // Update summary
+    document.getElementById('summaryRoomName').textContent = name;
+    document.getElementById('summaryPrice').textContent = 'RM ' + price.toFixed(2);
+    selectedPrice = price;
+    updateTotal();
+}
+
+function updateTotal() {
+    const checkIn = document.getElementById('checkIn').value;
+    const checkOut = document.getElementById('checkOut').value;
+    if (checkIn && checkOut) {
+        const nights = Math.max(0, (new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24));
+        document.getElementById('summaryNights').textContent = nights + ' night(s)';
+        document.getElementById('summaryTotal').textContent = 'RM ' + (selectedPrice * nights).toFixed(2);
+    }
+}
+
+document.getElementById('checkIn').addEventListener('change', updateTotal);
+document.getElementById('checkOut').addEventListener('change', updateTotal);
+</script>
+{% endblock %}

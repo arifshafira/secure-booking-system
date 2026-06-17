@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BookStay Hotels{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C9A84C;
+            --gold-light: #E8D5A3;
+            --dark: #1A1A2E;
+            --darker: #0F0F1A;
+            --cream: #FAF8F3;
+            --text: #2C2C2C;
+            --muted: #6B6B6B;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px; min-height: 100vh;
+            background: linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
+            position: fixed; top: 0; left: 0; z-index: 100;
+            display: flex; flex-direction: column;
+            border-right: 1px solid rgba(201,168,76,0.2);
+        }
+        .sidebar-brand {
+            padding: 32px 24px 24px;
+            border-bottom: 1px solid rgba(201,168,76,0.15);
+        }
+        .sidebar-brand .hotel-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px; font-weight: 700;
+            color: var(--gold); letter-spacing: 1px;
+        }
+        .sidebar-brand .hotel-subtitle {
+            font-size: 10px; color: rgba(255,255,255,0.4);
+            letter-spacing: 3px; text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .sidebar-user {
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .sidebar-user .user-avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), #8B6914);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px; font-weight: 700; color: white;
+            margin-bottom: 8px;
+        }
+        .sidebar-user .user-name {
+            font-size: 13px; font-weight: 600; color: white;
+        }
+        .sidebar-user .user-role {
+            font-size: 10px; color: var(--gold);
+            text-transform: uppercase; letter-spacing: 2px;
+        }
+        .sidebar-nav { padding: 16px 0; flex: 1; }
+        .nav-section-label {
+            font-size: 9px; color: rgba(255,255,255,0.25);
+            text-transform: uppercase; letter-spacing: 3px;
+            padding: 12px 24px 6px;
+        }
+        .sidebar-nav .nav-link {
+            display: flex; align-items: center; gap: 12px;
+            padding: 11px 24px; color: rgba(255,255,255,0.55) !important;
+            font-size: 13px; font-weight: 500;
+            border-left: 3px solid transparent;
+            transition: all 0.2s; text-decoration: none;
+        }
+        .sidebar-nav .nav-link:hover {
+            color: white !important; background: rgba(201,168,76,0.08);
+            border-left-color: var(--gold);
+        }
+        .sidebar-nav .nav-link.active {
+            color: var(--gold) !important; background: rgba(201,168,76,0.1);
+            border-left-color: var(--gold);
+        }
+        .sidebar-nav .nav-link i { font-size: 15px; width: 18px; }
+        .sidebar-footer {
+            padding: 16px 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .sidebar-footer .nav-link {
+            display: flex; align-items: center; gap: 10px;
+            color: rgba(255,255,255,0.4) !important;
+            font-size: 12px; text-decoration: none;
+            transition: color 0.2s;
+        }
+        .sidebar-footer .nav-link:hover { color: #ef4444 !important; }
+
+        /* MAIN CONTENT */
+        .main-wrapper { margin-left: 260px; min-height: 100vh; }
+        .top-bar {
+            background: white; padding: 16px 32px;
+            border-bottom: 1px solid #EEEBE3;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .top-bar .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px; font-weight: 600; color: var(--dark);
+        }
+        .top-bar .breadcrumb {
+            font-size: 12px; color: var(--muted); margin: 0;
+        }
+        .content-area { padding: 32px; }
+
+        /* CARDS */
+        .luxury-card {
+            background: white; border-radius: 16px;
+            border: 1px solid #EEEBE3;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            overflow: hidden;
+        }
+        .luxury-card .card-header-luxury {
+            padding: 20px 24px;
+            border-bottom: 1px solid #EEEBE3;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .luxury-card .card-header-luxury h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px; font-weight: 600; color: var(--dark); margin: 0;
+        }
+
+        /* BUTTONS */
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #A8882E);
+            border: none; color: white; font-weight: 600;
+            font-size: 13px; padding: 10px 20px; border-radius: 8px;
+            transition: all 0.2s; letter-spacing: 0.3px;
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #D4AD52, var(--gold));
+            color: white; transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(201,168,76,0.3);
+        }
+        .btn-outline-gold {
+            border: 1.5px solid var(--gold); color: var(--gold);
+            background: transparent; font-weight: 600;
+            font-size: 13px; padding: 9px 20px; border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .btn-outline-gold:hover {
+            background: var(--gold); color: white;
+        }
+
+        /* BADGES */
+        .badge-pending { background: #FEF3C7; color: #92400E; font-weight: 600; padding: 4px 10px; border-radius: 20px; font-size: 11px; }
+        .badge-confirmed { background: #D1FAE5; color: #065F46; font-weight: 600; padding: 4px 10px; border-radius: 20px; font-size: 11px; }
+        .badge-cancelled { background: #FEE2E2; color: #991B1B; font-weight: 600; padding: 4px 10px; border-radius: 20px; font-size: 11px; }
+
+        /* TABLE */
+        .luxury-table { width: 100%; border-collapse: collapse; }
+        .luxury-table thead th {
+            background: #F9F7F2; padding: 12px 16px;
+            font-size: 11px; font-weight: 600; color: var(--muted);
+            text-transform: uppercase; letter-spacing: 1px;
+            border-bottom: 1px solid #EEEBE3;
+        }
+        .luxury-table tbody td {
+            padding: 16px; border-bottom: 1px solid #F5F3EE;
+            font-size: 13px; vertical-align: middle;
+        }
+        .luxury-table tbody tr:hover { background: #FDFCF9; }
+        .luxury-table tbody tr:last-child td { border-bottom: none; }
+
+        /* FORMS */
+        .form-label-luxury {
+            font-size: 12px; font-weight: 600; color: var(--muted);
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
+        }
+        .form-control-luxury {
+            border: 1.5px solid #E5E0D8; border-radius: 8px;
+            padding: 10px 14px; font-size: 14px; color: var(--text);
+            background: white; transition: border-color 0.2s;
+            width: 100%;
+        }
+        .form-control-luxury:focus {
+            outline: none; border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+        }
+
+        /* ALERTS */
+        .alert { border-radius: 10px; border: none; font-size: 13px; }
+        .alert-success { background: #D1FAE5; color: #065F46; }
+        .alert-danger { background: #FEE2E2; color: #991B1B; }
+        .alert-warning { background: #FEF3C7; color: #92400E; }
+
+        /* STATS CARDS */
+        .stat-card {
+            background: white; border-radius: 16px;
+            border: 1px solid #EEEBE3; padding: 24px;
+        }
+        .stat-card .stat-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; margin-bottom: 16px;
+        }
+        .stat-card .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px; font-weight: 700; color: var(--dark);
+        }
+        .stat-card .stat-label {
+            font-size: 12px; color: var(--muted); font-weight: 500;
+            text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+{% if user.is_authenticated %}
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <div class="hotel-name">✦ BookStay</div>
+        <div class="hotel-subtitle">Hotel Booking</div>
+    </div>
+    <div class="sidebar-user">
+        <div class="user-avatar">{{ user.username|first|upper }}</div>
+        <div class="user-name">{{ user.get_full_name|default:user.username }}</div>
+        <div class="user-role">{{ user.role }}</div>
+    </div>
+    <nav class="sidebar-nav">
+        <div class="nav-section-label">Main Menu</div>
+        <a class="nav-link {% if request.resolver_match.url_name == 'list' %}active{% endif %}"
+           href="{% url 'bookings:list' %}">
+            <i class="bi bi-calendar3"></i> My Reservations
+        </a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'create' %}active{% endif %}"
+           href="{% url 'bookings:create' %}">
+            <i class="bi bi-plus-circle"></i> New Reservation
+        </a>
+        <div class="nav-section-label">Account</div>
+        <a class="nav-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}"
+           href="{% url 'accounts:profile' %}">
+            <i class="bi bi-person"></i> My Profile
+        </a>
+        {% if user.is_admin %}
+        <div class="nav-section-label">Admin</div>
+        <a class="nav-link {% if request.resolver_match.app_name == 'audit' %}active{% endif %}"
+           href="{% url 'audit:logs' %}">
+            <i class="bi bi-shield-check"></i> Audit Logs
+        </a>
+        {% endif %}
+    </nav>
+    <div class="sidebar-footer">
+        <a class="nav-link" href="{% url 'accounts:logout' %}">
+            <i class="bi bi-box-arrow-right"></i> Sign Out
+        </a>
+    </div>
+</div>
+
+<div class="main-wrapper">
+    <div class="top-bar">
+        <div>
+            <div class="page-title">{% block page_title %}Dashboard{% endblock %}</div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 mt-1">
+                    <li class="breadcrumb-item"><a href="{% url 'bookings:list' %}" style="color:var(--gold);text-decoration:none;">Home</a></li>
+                    {% block breadcrumb %}<li class="breadcrumb-item active">Dashboard</li>{% endblock %}
+                </ol>
+            </nav>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <span style="font-size:12px;color:var(--muted);">Welcome back, <strong>{{ user.username }}</strong></span>
+        </div>
+    </div>
+    <div class="content-area">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-3" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+{% else %}
+<nav style="background:var(--darker);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);font-weight:700;">✦ BookStay</div>
+    <div class="d-flex gap-2">
+        <a href="{% url 'accounts:login' %}" class="btn-outline-gold btn">Sign In</a>
+        <a href="{% url 'accounts:register' %}" class="btn-gold btn">Register</a>
+    </div>
+</nav>
+{% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

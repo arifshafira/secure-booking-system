@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Cancel Reservation — BookStay{% endblock %}
+{% block page_title %}Cancel Reservation{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="luxury-card" style="text-align:center;">
+            <div style="padding:48px 32px;">
+                <div style="font-size:56px;margin-bottom:20px;">🚫</div>
+                <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#1A1A2E;margin-bottom:10px;">Cancel This Reservation?</div>
+                <div style="font-size:14px;color:#6B6B6B;margin-bottom:8px;">You are about to cancel:</div>
+                <div style="font-size:18px;font-weight:700;color:#C9A84C;margin-bottom:8px;">{{ booking.title }}</div>
+                <div style="font-size:13px;color:#6B6B6B;margin-bottom:32px;">{{ booking.booking_date|date:"d M Y" }} at {{ booking.booking_time|time:"H:i" }}</div>
+                <div style="background:#FEF2F2;border-radius:10px;padding:14px;margin-bottom:28px;font-size:13px;color:#991B1B;">
+                    ⚠️ This action cannot be undone.
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div style="display:flex;gap:12px;justify-content:center;">
+                        <button type="submit" class="btn" style="padding:12px 28px;background:#EF4444;border:none;border-radius:10px;color:white;font-weight:600;font-size:14px;">
+                            Yes, Cancel Booking
+                        </button>
+                        <a href="{% url 'bookings:list' %}" class="btn-outline-gold btn">Keep Reservation</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

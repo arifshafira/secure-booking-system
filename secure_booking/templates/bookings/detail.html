@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Reservation Detail — BookStay{% endblock %}
+{% block page_title %}Reservation Detail{% endblock %}
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'bookings:list' %}" style="color:var(--gold);text-decoration:none;">Reservations</a></li>
+<li class="breadcrumb-item active">#{{ booking.pk }}</li>
+{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="luxury-card">
+            <div class="card-header-luxury">
+                <h5>🏨 {{ booking.title }}</h5>
+                <span class="badge-{{ booking.status }}">{{ booking.get_status_display }}</span>
+            </div>
+            <div style="padding:28px;">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div style="margin-bottom:24px;">
+                            <div style="font-size:11px;font-weight:600;color:#6B6B6B;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Check-in Date</div>
+                            <div style="font-size:18px;font-weight:600;color:#1A1A2E;">{{ booking.booking_date|date:"d M Y" }}</div>
+                        </div>
+                        <div style="margin-bottom:24px;">
+                            <div style="font-size:11px;font-weight:600;color:#6B6B6B;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Time</div>
+                            <div style="font-size:18px;font-weight:600;color:#1A1A2E;">{{ booking.booking_time|time:"H:i" }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="margin-bottom:24px;">
+                            <div style="font-size:11px;font-weight:600;color:#6B6B6B;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Location / Room</div>
+                            <div style="font-size:18px;font-weight:600;color:#1A1A2E;"><i class="bi bi-geo-alt" style="color:#C9A84C;"></i> {{ booking.location }}</div>
+                        </div>
+                        <div style="margin-bottom:24px;">
+                            <div style="font-size:11px;font-weight:600;color:#6B6B6B;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Booked On</div>
+                            <div style="font-size:15px;font-weight:500;color:#1A1A2E;">{{ booking.created_at|date:"d M Y H:i" }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% if booking.description %}
+                <div style="padding:16px;background:#FAF8F3;border-radius:10px;border:1px solid #EEEBE3;">
+                    <div style="font-size:11px;font-weight:600;color:#6B6B6B;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Notes</div>
+                    <div style="font-size:14px;color:#2C2C2C;line-height:1.6;">{{ booking.description }}</div>
+                </div>
+                {% endif %}
+                {% if user.is_admin %}
+                <div style="margin-top:20px;padding:16px;background:#F0FDF4;border-radius:10px;border:1px solid #BBF7D0;">
+                    <div style="font-size:11px;font-weight:600;color:#6B6B6B;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Guest</div>
+                    <div style="font-size:15px;font-weight:600;color:#1A1A2E;">{{ booking.user.username }}</div>
+                </div>
+                {% endif %}
+                <div style="display:flex;gap:12px;margin-top:28px;">
+                    <a href="{% url 'bookings:edit' booking.pk %}" class="btn-gold btn">
+                        <i class="bi bi-pencil me-2"></i>Edit Reservation
+                    </a>
+                    <a href="{% url 'bookings:delete' booking.pk %}" class="btn btn-sm" style="padding:10px 20px;border:1px solid #FCA5A5;border-radius:8px;color:#EF4444;font-weight:600;">
+                        <i class="bi bi-trash me-2"></i>Cancel Booking
+                    </a>
+                    <a href="{% url 'bookings:list' %}" class="btn-outline-gold btn">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

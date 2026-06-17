@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}My Profile — BookStay{% endblock %}
+{% block page_title %}My Profile{% endblock %}
+{% block breadcrumb %}<li class="breadcrumb-item active">Profile</li>{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-lg-4">
+        <div class="luxury-card">
+            <div style="padding:32px;text-align:center;">
+                <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6914);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:white;margin:0 auto 16px;">
+                    {{ user.username|first|upper }}
+                </div>
+                <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;">{{ user.get_full_name|default:user.username }}</div>
+                <div style="font-size:12px;color:#C9A84C;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-top:4px;">{{ user.role }} Member</div>
+                <hr style="border-color:#EEEBE3;margin:20px 0;">
+                <div style="text-align:left;">
+                    <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F5F3EE;">
+                        <span style="font-size:12px;color:#6B6B6B;">Username</span>
+                        <span style="font-size:13px;font-weight:600;">{{ user.username }}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F5F3EE;">
+                        <span style="font-size:12px;color:#6B6B6B;">Member Since</span>
+                        <span style="font-size:13px;font-weight:600;">{{ user.date_joined|date:"M Y" }}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:10px 0;">
+                        <span style="font-size:12px;color:#6B6B6B;">Last Login</span>
+                        <span style="font-size:13px;font-weight:600;">{{ user.last_login|date:"d M Y" }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="luxury-card">
+            <div class="card-header-luxury">
+                <h5>Edit Profile Information</h5>
+            </div>
+            <div style="padding:28px;">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        {% for field in form %}
+                        <div class="col-md-6">
+                            <label class="form-label-luxury">{{ field.label }}</label>
+                            <input type="{{ field.field.widget.input_type }}"
+                                   name="{{ field.html_name }}"
+                                   class="form-control-luxury {% if field.errors %}is-invalid{% endif %}"
+                                   value="{{ field.value|default:'' }}"
+                                   placeholder="{{ field.label }}">
+                            {% for error in field.errors %}
+                            <div style="font-size:12px;color:#EF4444;margin-top:4px;">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div style="margin-top:24px;">
+                        <button type="submit" class="btn-gold btn">
+                            <i class="bi bi-save me-2"></i>Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

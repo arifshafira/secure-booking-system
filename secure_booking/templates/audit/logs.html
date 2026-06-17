@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Audit Logs — BookStay{% endblock %}
+{% block page_title %}Security Audit Logs{% endblock %}
+{% block breadcrumb %}<li class="breadcrumb-item active">Audit Logs</li>{% endblock %}
+
+{% block content %}
+
+
+<div class="luxury-card">
+    <div class="card-header-luxury">
+        <h5>🛡️ Security Event Log</h5>
+        <span style="font-size:12px;color:#6B6B6B;">Last 200 events</span>
+    </div>
+    <div class="table-responsive">
+        <table class="luxury-table">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Description</th>
+                    <th>IP Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td style="font-size:12px;color:#6B6B6B;white-space:nowrap;">{{ log.timestamp|date:"d M Y H:i:s" }}</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6914);display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;">
+                                {{ log.user.username|first|upper|default:"?" }}
+                            </div>
+                            <span style="font-size:13px;font-weight:500;">{{ log.user.username|default:"Anonymous" }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;
+                            {% if log.action == 'login' %}background:#D1FAE5;color:#065F46;
+                            {% elif log.action == 'logout' %}background:#F3F4F6;color:#374151;
+                            {% elif log.action == 'login_failed' %}background:#FEE2E2;color:#991B1B;
+                            {% elif log.action == 'access_denied' %}background:#FEF3C7;color:#92400E;
+                            {% elif log.action == 'deleted' %}background:#FEE2E2;color:#991B1B;
+                            {% else %}background:#EDE9FE;color:#5B21B6;{% endif %}">
+                            {{ log.get_action_display }}
+                        </span>
+                    </td>
+                    <td style="font-size:13px;color:#2C2C2C;">{{ log.description }}</td>
+                    <td style="font-size:12px;color:#6B6B6B;font-family:monospace;">{{ log.ip_address|default:"—" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

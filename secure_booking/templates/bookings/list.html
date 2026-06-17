@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}My Reservations — BookStay{% endblock %}
+{% block page_title %}{% if user.is_admin %}All Reservations{% else %}My Reservations{% endif %}{% endblock %}
+{% block breadcrumb %}<li class="breadcrumb-item active">Reservations</li>{% endblock %}
+
+{% block content %}
+<!-- Stats Row (Admin only) -->
+
+
+<div class="luxury-card">
+    <div class="card-header-luxury">
+        <h5>{% if user.is_admin %}All Guest Reservations{% else %}Your Reservations{% endif %}</h5>
+        <a href="{% url 'bookings:create' %}" class="btn-gold btn">
+            <i class="bi bi-plus-lg me-2"></i>New Reservation
+        </a>
+    </div>
+    {% if bookings %}
+    <div class="table-responsive">
+        <table class="luxury-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    {% if user.is_admin %}<th>Guest</th>{% endif %}
+                    <th>Room / Event</th>
+                    <th>Check-in Date</th>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td style="color:#6B6B6B;font-size:12px;">{{ forloop.counter }}</td>
+                    {% if user.is_admin %}
+                    <td>
+                        <div style="display:flex;align-items:center;gap:10px;">
+                            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8B6914);display:flex;align-items:center;justify-content:center;color:white;font-size:12px;font-weight:700;">
+                                {{ booking.user.username|first|upper }}
+                            </div>
+                            <span style="font-weight:500;">{{ booking.user.username }}</span>
+                        </div>
+                    </td>
+                    {% endif %}
+                    <td>
+                        <div style="font-weight:600;color:#1A1A2E;">{{ booking.title }}</div>
+                        {% if booking.description %}
+                        <div style="font-size:12px;color:#6B6B6B;margin-top:2px;">{{ booking.description|truncatechars:40 }}</div>
+                        {% endif %}
+                    </td>
+                    <td style="font-weight:500;">{{ booking.booking_date|date:"d M Y" }}</td>
+                    <td>{{ booking.booking_time|time:"H:i" }}</td>
+                    <td>
+                        <i class="bi bi-geo-alt" style="color:#C9A84C;"></i>
+                        {{ booking.location }}
+                    </td>
+                    <td>
+                        <span class="badge-{{ booking.status }}">{{ booking.get_status_display }}</span>
+                    </td>
+                    <td>
+                        <div style="display:flex;gap:6px;">
+                            <a href="{% url 'bookings:detail' booking.pk %}" class="btn btn-sm" style="padding:5px 10px;border:1px solid #E5E0D8;border-radius:7px;color:#6B6B6B;">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="{% url 'bookings:edit' booking.pk %}" class="btn btn-sm" style="padding:5px 10px;border:1px solid #C9A84C;border-radius:7px;color:#C9A84C;">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a href="{% url 'bookings:delete' booking.pk %}" class="btn btn-sm" style="padding:5px 10px;border:1px solid #FCA5A5;border-radius:7px;color:#EF4444;">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div style="padding:60px;text-align:center;">
+        <div style="font-size:48px;margin-bottom:16px;">🏨</div>
+        <div style="font-family:'Playfair Display',serif;font-size:20px;color:#1A1A2E;margin-bottom:8px;">No Reservations Yet</div>
+        <div style="font-size:13px;color:#6B6B6B;margin-bottom:24px;">Start planning your perfect luxury stay</div>
+        <a href="{% url 'bookings:create' %}" class="btn-gold btn">Make Your First Reservation</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
