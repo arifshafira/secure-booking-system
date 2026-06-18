@@ -160,26 +160,59 @@ Secure-Hotel-Booking-System
 
 ```
 ## Screenshots
-Login Page
+### Login Page
 
-Insert Screenshot Here
+<img width="1600" height="841" alt="WhatsApp Image 2026-06-17 at 3 49 28 PM" src="https://github.com/user-attachments/assets/e40bbb36-38f1-4861-b916-dd84dd29492f" />
 
-Registration Page
 
-Insert Screenshot Here
+### Registration Page
 
-Room Booking Page
+<img width="1600" height="685" alt="WhatsApp Image 2026-06-18 at 12 10 30 PM" src="https://github.com/user-attachments/assets/853daa7a-6e32-49bc-8d5f-bf08468570d9" />
 
-Insert Screenshot Here
 
-User Profile Page
+### Room Booking Page
 
-Insert Screenshot Here
+<img width="1600" height="693" alt="WhatsApp Image 2026-06-18 at 12 13 14 PM" src="https://github.com/user-attachments/assets/517bba88-7ec6-4697-acfb-de5df292bcd3" />
+<img width="1600" height="690" alt="WhatsApp Image 2026-06-18 at 12 17 11 PM" src="https://github.com/user-attachments/assets/7cd983d4-d204-46c0-af18-2548d898a2ca" />
 
-Admin Dashboard
 
-Insert Screenshot Here
+### User Profile Page
 
-Audit Log Page
+<img width="1600" height="684" alt="WhatsApp Image 2026-06-18 at 12 15 07 PM" src="https://github.com/user-attachments/assets/127be729-8156-4ea4-b594-d2aad2b7ba8e" />
 
-Insert Screenshot Here
+<img width="1600" height="686" alt="WhatsApp Image 2026-06-18 at 12 13 57 PM" src="https://github.com/user-attachments/assets/cc616188-1e0c-4370-95de-39a422577d6d" />
+
+
+### Admin Dashboard
+
+<img width="1600" height="841" alt="WhatsApp Image 2026-06-17 at 3 51 29 PM" src="https://github.com/user-attachments/assets/d5a4d10a-d788-4608-ac31-d383c1e4ae46" />
+
+
+### Audit Log Page
+
+<img width="1600" height="693" alt="WhatsApp Image 2026-06-18 at 12 19 19 PM" src="https://github.com/user-attachments/assets/1da7c2f2-e5e7-4590-988f-6531ae1b9334" />
+
+
+## Security Testing
+
+### Tools Used:
+- OWASP ZAP
+- SonarQube / SonarLint
+- OWASP Dependency Check
+
+### Testing Conducted:
+- SQL Injection Testing
+- Cross-Site Scripting (XSS) Testing
+- Authentication Testing
+- Access Control Testing
+- Fuzz Testing
+- Input Validation Testing
+
+
+## Team Members
+
+Name	Student ID
+Member 1	XXXXX
+Member 2	XXXXX
+Member 3	XXXXX
+Member 4	XXXXX
