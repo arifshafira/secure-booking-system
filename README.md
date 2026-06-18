@@ -1,1 +1,1 @@
-# secure-hotel-booking-system
+# Secure Hotel Booking System
