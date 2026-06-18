@@ -143,20 +143,20 @@ http://127.0.0.1:8000
 ```
 Project Structure
 ```bash
-Secure-Hotel-Booking-System
+Secure-Booking-System
 │
-├── config/
-├── docs/
-├── tests/
-├── static/
-├── templates/
-├── secure_booking/
-│
-├── app.py
+├── secure_booking
+|    ├── docs/
+|    ├── tests/
+|    ├── static/
+|    ├── templates/
+|    └── secure_booking/
+│    
+├── .gitignore
+├── bandit_report.txt
+├── manage.py
 ├── requirements.txt
-├── .env.example
-├── README.md
-└── .gitignore
+└── README.md
 
 ```
 ## Screenshots
