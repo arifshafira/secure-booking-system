@@ -213,7 +213,7 @@ Secure-Hotel-Booking-System
 
 | **Name**	| **Role** |
 | :--- | :---: | 
-| Muhammad Irman Haqiemy	| Developer & Project Leader|
+| Muhammad Irman Haqiemy Bin Syafrizal	| Developer & Project Leader|
 | Muhammad Arif Shafira Bin Shahrin Amri | GitHub Handler |
 | Muhammad Haris Haikal Bin Muhd Hata	| Security Checker |
 
