@@ -218,3 +218,17 @@ Secure-Hotel-Booking-System
 | Muhammad Haris Haikal Bin Muhd Hata	| Security Checker |
 
 
+## GitHub Repository
+
+### Repository Name:
+
+Secure-Booking-System
+
+### Version:
+```bash
+v1.0.0 Initial Secure Release
+
+```
+### License
+
+This project is developed for educational purposes under the Secure Software Development course.
