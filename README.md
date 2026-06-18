@@ -158,7 +158,7 @@ Secure-Booking-System
 
 ```
 ## Screenshots
-### User - Login Page
+### Login Page
 
 <img width="1600" height="841" alt="WhatsApp Image 2026-06-17 at 3 49 28 PM" src="https://github.com/user-attachments/assets/e40bbb36-38f1-4861-b916-dd84dd29492f" />
 
@@ -167,10 +167,10 @@ Secure-Booking-System
 
 <img width="1600" height="685" alt="WhatsApp Image 2026-06-18 at 12 10 30 PM" src="https://github.com/user-attachments/assets/853daa7a-6e32-49bc-8d5f-bf08468570d9" />
 
-### My Booking Page
+### User - My Booking Page
 <img width="1600" height="686" alt="WhatsApp Image 2026-06-18 at 12 13 57 PM" src="https://github.com/user-attachments/assets/cc616188-1e0c-4370-95de-39a422577d6d" />
 
-### Room Booking Page
+### User - Room Booking Page
 
 <img width="1814" height="1012" alt="image" src="https://github.com/user-attachments/assets/7d83b836-8b80-42a1-a73e-ae3ee54f09cc" />
 
@@ -178,12 +178,12 @@ Secure-Booking-System
 
 
 
-### User Profile Page
+### User - Profile Page
 
 <img width="1600" height="684" alt="WhatsApp Image 2026-06-18 at 12 15 07 PM" src="https://github.com/user-attachments/assets/127be729-8156-4ea4-b594-d2aad2b7ba8e" />
 
 
-## Admin
+
 
 ### Admin Dashboard
 
@@ -193,6 +193,10 @@ Secure-Booking-System
 ### Admin Manage Room
 <img width="1805" height="953" alt="image" src="https://github.com/user-attachments/assets/3a04926f-d2fd-41be-87ec-769a00af4923" />
 <img width="1823" height="768" alt="image" src="https://github.com/user-attachments/assets/d5141ae4-b48e-4ebf-8120-e94dce0ba4f9" />
+
+### Admin Profile Page
+<img width="1825" height="999" alt="image" src="https://github.com/user-attachments/assets/e97978e2-51a0-460b-8d51-92629f6f3f93" />
+
 
 
 ### Audit Log Page
