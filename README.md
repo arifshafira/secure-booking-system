@@ -187,6 +187,8 @@ Secure-Booking-System
 
 ### Admin Manage Room
 <img width="1805" height="953" alt="image" src="https://github.com/user-attachments/assets/3a04926f-d2fd-41be-87ec-769a00af4923" />
+<img width="1823" height="768" alt="image" src="https://github.com/user-attachments/assets/d5141ae4-b48e-4ebf-8120-e94dce0ba4f9" />
+
 
 ### Audit Log Page
 
