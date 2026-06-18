@@ -201,6 +201,9 @@ Secure-Booking-System
 <img width="1808" height="1013" alt="image" src="https://github.com/user-attachments/assets/8ca43b8f-1d83-44db-a8b0-0f935b21b7b5" />
 <img width="1800" height="1011" alt="image" src="https://github.com/user-attachments/assets/6ed6275d-0a2a-4c68-a021-cd700fa31381" />
 
+### Book Detail Page
+<img width="1828" height="1010" alt="image" src="https://github.com/user-attachments/assets/1f03b1ba-901d-40bf-abfa-0d02f1943b98" />
+
 
 ### Audit Log Page
 
