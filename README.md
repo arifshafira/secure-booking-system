@@ -70,14 +70,14 @@ The system implements several security controls:
 - Python (Django)
 
 ### Backend:
-- Python Flask
+- Python Django
 
 ### Database:
 - SQLite
 
 ### Security Libraries:
-- Flask-WTF
-- Flask-Login
+- Django-WTF
+- Django-Login
 - bcrypt
 
 ## Installation Steps
