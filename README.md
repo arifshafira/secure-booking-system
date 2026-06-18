@@ -158,6 +158,7 @@ Secure-Booking-System
 
 ```
 ## Screenshots
+## User
 ### Login Page
 
 <img width="1600" height="841" alt="WhatsApp Image 2026-06-17 at 3 49 28 PM" src="https://github.com/user-attachments/assets/e40bbb36-38f1-4861-b916-dd84dd29492f" />
@@ -183,7 +184,7 @@ Secure-Booking-System
 <img width="1600" height="684" alt="WhatsApp Image 2026-06-18 at 12 15 07 PM" src="https://github.com/user-attachments/assets/127be729-8156-4ea4-b594-d2aad2b7ba8e" />
 
 
-
+## Admin
 
 ### Admin Dashboard
 
