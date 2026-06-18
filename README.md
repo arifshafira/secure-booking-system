@@ -1,7 +1,31 @@
 # Secure Hotel Booking System
 
-Project Description
+## Project Description
 
-The Secure Hotel Booking System is a web-based application developed as part of the Secure Software Development course. The system allows users to register, log in, browse available hotel rooms, make reservations, manage their profiles, and view booking history. Administrators can manage users, rooms, bookings, and monitor system activities through audit logs.
+The Secure Booking System is a web-based application developed as part of the Secure Software Development course.
 
-The project follows secure software development practices based on OWASP Top 10, OWASP ASVS, and Secure Software Development Framework (SSDF) guidelines.
+## Features
+
+### User Features
+- User Registration
+- User Login
+- View Available Rooms
+- Create Booking
+- Cancel Booking
+- User Profile Management
+- Booking History
+
+### Administrator Features
+- Manage Users
+- Manage Hotel Rooms
+- Manage Bookings
+- View Audit Logs
+- Monitor Login Activities
+
+## Installation Steps
+
+1. Clone the repository
+2. Create a virtual environment
+
+```bash
+python -m venv venv
