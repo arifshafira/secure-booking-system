@@ -229,6 +229,6 @@ Secure-Booking-System
 v1.0.0 Initial Secure Release
 
 ```
-### License
+### License:
 
 This project is developed for educational purposes under the Secure Software Development course.
