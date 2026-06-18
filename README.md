@@ -185,6 +185,8 @@ Secure-Booking-System
 
 <img width="1600" height="841" alt="WhatsApp Image 2026-06-17 at 3 51 29 PM" src="https://github.com/user-attachments/assets/d5a4d10a-d788-4608-ac31-d383c1e4ae46" />
 
+### Admin Manage Room
+<img width="1805" height="953" alt="image" src="https://github.com/user-attachments/assets/3a04926f-d2fd-41be-87ec-769a00af4923" />
 
 ### Audit Log Page
 
