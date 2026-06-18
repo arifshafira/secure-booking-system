@@ -67,9 +67,7 @@ The system implements several security controls:
 
 ### Frontend:
 - HTML
-- CSS
-- Bootstrap
-- JavaScript
+- Python (Django)
 
 ### Backend:
 - Python Flask
