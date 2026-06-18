@@ -140,3 +140,46 @@ python manage.py runserver
 The application will be available at:
 ```bash
 http://127.0.0.1:8000
+```
+Project Structure
+```bash
+Secure-Hotel-Booking-System
+│
+├── config/
+├── docs/
+├── tests/
+├── static/
+├── templates/
+├── secure_booking/
+│
+├── app.py
+├── requirements.txt
+├── .env.example
+├── README.md
+└── .gitignore
+
+```
+## Screenshots
+Login Page
+
+Insert Screenshot Here
+
+Registration Page
+
+Insert Screenshot Here
+
+Room Booking Page
+
+Insert Screenshot Here
+
+User Profile Page
+
+Insert Screenshot Here
+
+Admin Dashboard
+
+Insert Screenshot Here
+
+Audit Log Page
+
+Insert Screenshot Here
