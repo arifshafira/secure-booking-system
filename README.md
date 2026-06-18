@@ -196,9 +196,7 @@ Secure-Booking-System
 ## Security Testing
 
 ### Tools Used:
-- OWASP ZAP
-- SonarQube / SonarLint
-- OWASP Dependency Check
+- Burp Suite
 
 ### Testing Conducted:
 - SQL Injection Testing
