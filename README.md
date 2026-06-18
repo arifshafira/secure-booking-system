@@ -198,6 +198,9 @@ Secure-Booking-System
 
 <img width="1600" height="693" alt="WhatsApp Image 2026-06-18 at 12 19 19 PM" src="https://github.com/user-attachments/assets/1da7c2f2-e5e7-4590-988f-6531ae1b9334" />
 
+### Cancel Book Page
+<img width="1808" height="691" alt="image" src="https://github.com/user-attachments/assets/64619071-fa67-4f11-af98-0d30e0c0b7b6" />
+
 
 ## Security Testing
 
