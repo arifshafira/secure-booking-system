@@ -167,18 +167,22 @@ Secure-Booking-System
 
 <img width="1600" height="685" alt="WhatsApp Image 2026-06-18 at 12 10 30 PM" src="https://github.com/user-attachments/assets/853daa7a-6e32-49bc-8d5f-bf08468570d9" />
 
+### My Booking Page
+<img width="1600" height="686" alt="WhatsApp Image 2026-06-18 at 12 13 57 PM" src="https://github.com/user-attachments/assets/cc616188-1e0c-4370-95de-39a422577d6d" />
 
 ### Room Booking Page
 
-<img width="1600" height="693" alt="WhatsApp Image 2026-06-18 at 12 13 14 PM" src="https://github.com/user-attachments/assets/517bba88-7ec6-4697-acfb-de5df292bcd3" />
-<img width="1600" height="690" alt="WhatsApp Image 2026-06-18 at 12 17 11 PM" src="https://github.com/user-attachments/assets/7cd983d4-d204-46c0-af18-2548d898a2ca" />
+<img width="1814" height="1012" alt="image" src="https://github.com/user-attachments/assets/7d83b836-8b80-42a1-a73e-ae3ee54f09cc" />
+
+<img width="1816" height="1013" alt="image" src="https://github.com/user-attachments/assets/27419224-f04c-41b4-a2fa-f7566737efd9" />
+
 
 
 ### User Profile Page
 
 <img width="1600" height="684" alt="WhatsApp Image 2026-06-18 at 12 15 07 PM" src="https://github.com/user-attachments/assets/127be729-8156-4ea4-b594-d2aad2b7ba8e" />
 
-<img width="1600" height="686" alt="WhatsApp Image 2026-06-18 at 12 13 57 PM" src="https://github.com/user-attachments/assets/cc616188-1e0c-4370-95de-39a422577d6d" />
+
 
 
 ### Admin Dashboard
