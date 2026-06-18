@@ -84,8 +84,59 @@ The system implements several security controls:
 
 ## Installation Steps
 
-1. Clone the repository
-2. Create a virtual environment
+### 1. Clone Repository
+
+Clone the project repository from GitHub:
 
 ```bash
-python -m venv venv
+git clone https://github.com/arifshafira/secure-booking-system.git
+
+```
+### 2. Navigate to Project Folder
+
+Move into the project directory:
+```bash
+cd secure_booking
+```
+### 3. Create Virtual Environment
+
+Create a Python virtual environment:
+
+```bash
+python -m venv .venv
+```
+### 4. Activate Virtual Environment
+
+Windows
+```bash
+.venv\Scripts\activate
+```
+Linux/Mac
+```bash
+source .venv/bin/activate
+```
+### 5. Install Dependencies
+
+Install all required packages:
+```bash
+pip install -r requirements.txt
+```
+### 6. Configure Environment Variables
+
+Create a .env file based on the project configuration.
+
+Example:
+```bash
+SECRET_KEY=your-secret-key
+
+DEBUG=True
+```
+### 7. Run Application
+
+Start the Django development server:
+```bash
+python manage.py runserver
+```
+The application will be available at:
+```bash
+http://127.0.0.1:8000
